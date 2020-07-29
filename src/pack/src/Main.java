@@ -11,5 +11,7 @@ public class Main {
 		java.awt.image.BufferedImage img = Image.read(args[0]);
 		int w = img.getWidth();
 		int h = img.getHeight();
+		
+		
 	}
 }

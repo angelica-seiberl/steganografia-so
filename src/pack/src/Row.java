@@ -56,7 +56,7 @@ public class Row implements Runnable {
 		embedInteger(rgb, leng, 0);
 		byte b[] = mess.getBytes();
 		for(int i=0;i<b.length;i++) {
-			embedByte(rgb, b[i], i*8+32);
+			embedByte(rgb, b[i], 0);
 		}
 	}
 	

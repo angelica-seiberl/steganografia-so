@@ -6,6 +6,7 @@ public class Row implements Runnable {
 	private int size;
 	private boolean done = false;
 	private boolean integer = false;
+	private String message;
 	
 	public Row(int[] a, char s) {
 		rgbArray = a;
@@ -23,7 +24,7 @@ public class Row implements Runnable {
 	public void run() {
 		if(integer) {
 			embedInteger(rgbArray, size, 0);
-			
+			embedMessage(rgbArray, message);
 		}
 		else {
 			

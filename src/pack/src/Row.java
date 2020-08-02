@@ -42,7 +42,23 @@ public class Row implements Runnable {
 		}
 		
 	}
-
+	
+	private void embedByte(int rgb[], byte n, int storageBit) {
+		for(int i=0; i<32; i++) {
+			int bit = getBitValue(n,i);
+			rgb[i] = setBitValue(rgb[i], storageBit, bit);
+		}
+	}
+	
+	private void embedMessage(int[] rgb, String mess) {
+		int leng = mess.length();
+		embedInteger(rgb, leng, 0);
+		byte b[] = mess.getBytes();
+		for(int i=0;i<b.length;i++) {
+			embedByte(rgb, b[i], i*8+32);
+		}
+	}
+	
 	private int getBitValue(int n, int location) {
 		int v = n & (int) Math.round(Math.pow(2, location));
 		return v == 0 ? 0 : 1;

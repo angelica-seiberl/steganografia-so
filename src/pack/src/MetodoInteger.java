@@ -8,8 +8,6 @@ public class MetodoInteger {
 
 			int bit = getBitValue(n, i);
 			rgb[i] = setBitValue(rgb[i], storageBit, bit);
-			i++;
-
 		}
 	}
 

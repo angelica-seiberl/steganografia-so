@@ -34,6 +34,8 @@ public class Main {
 			System.exit(1);
 		}
 		
+
+		byte b[] = text.getBytes();
 		Row[] rows = new Row[h];
 		Thread[] threads = new Thread[h];
 		int[] firstRgb = img.getRGB(0, 0, w, 1, null, 0, w);
@@ -41,14 +43,18 @@ public class Main {
 		
 		for(int i=0; i<lenght; i++) {
 			int[] rgb = img.getRGB(0, i+1, w, 1, null, 0, w);
-			rows[i+1] = new Row(rgb, text.charAt(i)); //gli indici delle righe  non partono da 0 perchè la prima riga
-			threads[i] = new Thread(rows[i]);       // è riservata alla dimensione della frase
+			rows[i+1] = new Row(rgb, b[i]); //gli indici delle righe  non partono da 0 perchï¿½ la prima riga
+			threads[i] = new Thread(rows[i]);       // ï¿½ riservata alla dimensione della frase
 		}
 		
 		//codifico lunghezza messaggio nella prima riga di pixel
-		threads[0].start();
 		try {
-			threads[0].join();
+			for ( Thread t: threads) {
+				t.start();
+			}
+			for ( Thread t: threads) {
+				t.join();
+			}
 		}
 		catch(InterruptedException e) {
 			System.out.println("Interrupted exception!");

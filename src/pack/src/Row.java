@@ -2,15 +2,15 @@ package src;
 
 public class Row implements Runnable {
 	private int[] rgbArray;
-	private char s;
+	private byte b;
 	private int size;
 	private boolean done = false;
 	private boolean integer = false;
 	private String message;
 	
-	public Row(int[] a, char s) {
+	public Row(int[] a, byte b) {
 		rgbArray = a;
-		this.s=s;
+		this.b=b;
 	}
 	
 	public Row(int[] a, int size) {
@@ -24,10 +24,9 @@ public class Row implements Runnable {
 	public void run() {
 		if(integer) {
 			embedInteger(rgbArray, size, 0);
-			embedMessage(rgbArray, message);
 		}
 		else {
-			
+			embedByte(rgbArray, b ,0);
 		}
 		//if integer==false ...
 		//chiamare embedByte del nostro amico
@@ -45,18 +44,9 @@ public class Row implements Runnable {
 	}
 	
 	private void embedByte(int rgb[], byte n, int storageBit) {
-		for(int i=0; i<32; i++) {
+		for(int i=0; i<8; i++) {
 			int bit = getBitValue(n,i);
 			rgb[i] = setBitValue(rgb[i], storageBit, bit);
-		}
-	}
-	
-	private void embedMessage(int[] rgb, String mess) {
-		int leng = mess.length();
-		embedInteger(rgb, leng, 0);
-		byte b[] = mess.getBytes();
-		for(int i=0;i<b.length;i++) {
-			embedByte(rgb, b[i], 0);
 		}
 	}
 	

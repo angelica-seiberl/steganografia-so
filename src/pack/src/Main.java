@@ -37,14 +37,16 @@ public class Main {
 
 		byte b[] = text.getBytes();
 		Row[] rows = new Row[h];
-		Thread[] threads = new Thread[h];
+		Thread[] threads = new Thread[lenght + 1];
+		ArrayList<int[]> rgb = new ArrayList<int[]>();
 		int[] firstRgb = img.getRGB(0, 0, w, 1, null, 0, w);
 		rows[0] = new Row(firstRgb, lenght);
+		threads[0] = new Thread(rows[0]);
 		
 		for(int i=0; i<lenght; i++) {
-			int[] rgb = img.getRGB(0, i+1, w, 1, null, 0, w);
-			rows[i+1] = new Row(rgb, b[i]); //gli indici delle righe  non partono da 0 perch� la prima riga
-			threads[i] = new Thread(rows[i]);       // � riservata alla dimensione della frase
+			 rgb.add(img.getRGB(0, i+1, w, 1, null, 0, w));
+			rows[i+1] = new Row(rgb.get(i), b[i]); //gli indici delle righe  non partono da 0 perch� la prima riga
+			threads[i+1] = new Thread(rows[i+1]);       // � riservata alla dimensione della frase
 		}
 		
 		//codifico lunghezza messaggio nella prima riga di pixel
@@ -61,6 +63,11 @@ public class Main {
 		}
 		
 		img.setRGB(0, 0, w, 1, firstRgb, 0, w);
+		
+		for(int i = 0; i < lenght; i ++) {
+			img.setRGB(0, i+1, w, 1, rgb.get(i), 0, w);
+		}
+		
 		
 		File outputfile = new File("Immagini/tramonto-mareProva.png");
 		ImageIO.write(img, "png", outputfile);

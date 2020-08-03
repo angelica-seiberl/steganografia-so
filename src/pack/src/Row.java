@@ -6,7 +6,7 @@ public class Row implements Runnable {
 	private int size;
 	private boolean done = false;
 	private boolean integer = false;
-	private String message;
+	
 	
 	public Row(int[] a, byte b) {
 		rgbArray = a;
@@ -52,6 +52,12 @@ public class Row implements Runnable {
 	
 	private int getBitValue(int n, int location) {
 		int v = n & (int) Math.round(Math.pow(2, location));
+	/*	if(v == 0) {
+		System.out.println("BitValue: "+0 );
+		}
+		else {
+			System.out.println("BitValue: "+1 );
+		}*/
 		return v == 0 ? 0 : 1;
 	}
 

@@ -2,16 +2,17 @@ package decodifica;
 
 public class DecodeInteger {
 
-	public void decodeInteger(int[] rgb) {
+	public void decodeInteger(int[] rgb, IntegerValue size) {
 		int numDecod = 0;
 		int bitValue;
 
 		for (int i = 0; i < 32; i++) {
 			bitValue = getBitValue(rgb[i], 0);
-			numDecod = numDecod | (setBitValue(0, i, bitValue)); // faccio or tra numero decodificato fin a quel momento
+			numDecod = numDecod |(setBitValue(0, i, bitValue)); // faccio or tra numero decodificato fin a quel momento
 																	// e
 		} // numero con tutti 0 e valore 0 o 1 nella posizione analizzata
-		System.out.println(numDecod); // a seconda del bit corrente decodificato (bitValue)
+		 // a seconda del bit corrente decodificato (bitValue)
+		size.setValue(numDecod);
 	}
 
 	public int getBitValue(int n, int location) {

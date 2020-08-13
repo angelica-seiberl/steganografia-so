@@ -62,7 +62,7 @@ public class Codifier {
 			}
 			
 			
-			File outputfile = new File("Immagini/tramonto-mareProva.png");
+			File outputfile = new File("NewImage.png");
 			ImageIO.write(img, "png", outputfile);
 	        
 		}

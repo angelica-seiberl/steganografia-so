@@ -2,26 +2,35 @@ package decoding;
 
 public class DecodeInteger {
 
+	// This method decodes an integer from a pixel's row (rgb). The decoded integer
+	// is saved through the setter of the object IntegerValue
 	public void decodeInteger(int[] rgb, IntegerValue size) {
 		int numDecod = 0;
 		int bitValue;
 
 		for (int i = 0; i < 32; i++) {
 			bitValue = getBitValue(rgb[i], 0);
-			numDecod = numDecod |(setBitValue(0, i, bitValue)); // faccio or tra numero decodificato fin a quel momento
-																	// e
-		} // numero con tutti 0 e valore 0 o 1 nella posizione analizzata
-		 // a seconda del bit corrente decodificato (bitValue)
+			numDecod = numDecod | (setBitValue(0, i, bitValue));
+
+		}
 		size.setValue(numDecod);
 	}
 
+	// This method returns the bit value of the integer number n in a certain
+	// location
 	public int getBitValue(int n, int location) {
 		int v = n & (int) Math.round(Math.pow(2, location));
 
-		return v == 0 ? 0 : 1;
+		if (v == 0) {
+			return 0;
+		} else {
+			return 1;
+		}
 
 	}
 
+	// This method allows to set a new bit value (bit) in a certain location of the
+	// integer number n
 	private int setBitValue(int n, int location, int bit) {
 		int toggle = (int) Math.pow(2, location), bv = getBitValue(n, location);
 		if (bv == bit) {

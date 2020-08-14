@@ -1,4 +1,4 @@
-package decodifica;
+package decoding;
 
 public class IntegerValue{
 	private int value;

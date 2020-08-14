@@ -1,4 +1,4 @@
-package decodifica;
+package decoding;
 
 public class DecodeRow implements Runnable {
 	private int[] rgbArray;

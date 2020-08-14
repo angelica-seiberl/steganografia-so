@@ -1,10 +1,9 @@
-package src;
+package encoding;
 
 public class Row implements Runnable {
 	private int[] rgbArray;
 	private byte b;
 	private int size;
-	private boolean done = false;
 	private boolean integer = false;
 	
 	
@@ -28,9 +27,6 @@ public class Row implements Runnable {
 		else {
 			embedByte(rgbArray, b ,0);
 		}
-		//if integer==false ...
-		//chiamare embedByte del nostro amico
-		done= true;
 	}
 	
 	private void embedInteger(int[] rgb, int n, int storageBit) {

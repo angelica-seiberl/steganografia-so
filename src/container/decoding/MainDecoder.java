@@ -1,4 +1,4 @@
-package decodifica;
+package decoding;
 
 import java.io.File;
 import java.io.IOException;

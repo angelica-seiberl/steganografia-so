@@ -42,7 +42,7 @@ public class Row implements Runnable {
 	}
 	
 	
-//	This method allows to embed a byte (n) in a pixel's array (rgb), the storageBit is the pixel's that has to be modified.	
+//	This method allows to embed a byte (n) in a pixel's array (rgb), the storageBit is the pixel's bit that has to be modified.	
 	private void embedByte(int rgb[], byte n, int storageBit) {
 		for(int i=0; i<8; i++) {
 			int bit = getBitValue(n,i);

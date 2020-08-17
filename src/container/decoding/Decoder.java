@@ -28,7 +28,7 @@ public class Decoder {
 		for (int j = 0; j < size.getValue(); j++) {
 			bytes[j] = new ByteValue((byte) 0);
 		}
-		// We instantiates an array of threads, this threads will decodify each byte
+		// We instantiates an array of threads, this threads will decode each byte
 		Thread[] threads = new Thread[size.getValue()];
 		for (int i = 0; i < size.getValue(); i++) {
 			threads[i] = new Thread(new DecodeRow(img2.getRGB(0, i + 1, w, 1, null, 0, w), bytes[i]));
